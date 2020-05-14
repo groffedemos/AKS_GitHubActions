@@ -12,11 +12,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
-    - name: Generate build number
-      uses: einaregilsson/build-number@v2 
-      with:
-        token: ${{secrets.github_token}}        
             
     - name: Docker Login - Docker Hub
       uses: Azure/docker-login@v1
@@ -27,7 +22,7 @@ jobs:
     - name: Build e Push no Docker Hub
       run: |
         docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/${{ secrets.NOME_IMAGEM }}:latest
-        docker tag ${{ secrets.DOCKER_USERNAME }}/${{ secrets.NOME_IMAGEM }}:latest ${{ secrets.DOCKER_USERNAME }}/${{ secrets.NOME_IMAGEM }}:${{ steps.buildnumber.outputs.build_number }}
+        docker tag ${{ secrets.DOCKER_USERNAME }}/${{ secrets.NOME_IMAGEM }}:latest ${{ secrets.DOCKER_USERNAME }}/${{ secrets.NOME_IMAGEM }}:$(GITHUB_RUN_NUMBER)
         docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.NOME_IMAGEM }}
   
     - name: Azure Kubernetes set context - Conectando ao cluster
@@ -41,7 +36,7 @@ jobs:
       uses: Azure/k8s-deploy@v1
       with:
         namespace: ${{ secrets.NAMESPACE_K8S }}
-        images: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.NOME_IMAGEM }}:${{ steps.buildnumber.outputs.build_number }}
+        images: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.NOME_IMAGEM }}:$(GITHUB_RUN_NUMBER)
         manifests: |
           manifests/deployment.yml
           manifests/service.yml
