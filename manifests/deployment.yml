@@ -6,6 +6,7 @@ metadata:
     app: contagem-api
 spec:
   replicas: 5
+  minReadySeconds: 10
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -21,7 +22,7 @@ spec:
     spec:
       containers:
       - name: contagem-api
-        image: renatogroffe/apicontagemk8s:latest
+        image: renatogroffe/apicontagemk8s:test
         env:
           - name: TesteAmbiente
             value: Utilizando o Azure Kubernetes Service (AKS) com deployment via GitHub Actions
