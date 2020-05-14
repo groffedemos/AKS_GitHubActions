@@ -27,4 +27,4 @@ spec:
             value: Utilizando o Azure Kubernetes Service (AKS) com deployment via GitHub Actions
         ports:
         - containerPort: 80
-      imagePullPolicy: Always
+        imagePullPolicy: Always
