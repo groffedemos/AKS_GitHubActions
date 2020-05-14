@@ -37,7 +37,7 @@ jobs:
       with:
         namespace: codingnight2
         images: |
-          renatogroffe/apicontagemk8s:latest
+          renatogroffe/apicontagemk8s:$GITHUB_RUN_NUMBER
         manifests: |
           manifests/deployment.yml
           manifests/service.yml
