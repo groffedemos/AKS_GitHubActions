@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: contagem-api
-        image: renatogroffe/apicontagemk8s:latest
+        image: renatogroffe/apicontagemk8s
         env:
           - name: TesteAmbiente
             value: Utilizando o Azure Kubernetes Service (AKS) com deployment via GitHub Actions
