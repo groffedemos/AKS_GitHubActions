@@ -12,7 +12,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-
+    
+    - name: Print new build number
+      run: echo "Build number is $BUILD_NUMBER"
+      
     - name: Docker Login - Docker Hub
       uses: Azure/docker-login@v1
       with:
