@@ -36,7 +36,7 @@ jobs:
       uses: Azure/k8s-deploy@v1
       with:
         namespace: ${{ secrets.NAMESPACE_K8S }}
-        images: '${{ secrets.DOCKER_USERNAME }}/${{ secrets.NOME_IMAGEM }}:$GITHUB_RUN_NUMBER'
+        images: '${{ secrets.DOCKER_USERNAME }}/${{ secrets.NOME_IMAGEM }}:$GITHUB_RUN_NUMBER:teste'
         manifests: |
           manifests/deployment.yml
           manifests/service.yml
