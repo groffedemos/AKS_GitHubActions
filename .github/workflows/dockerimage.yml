@@ -35,7 +35,7 @@ jobs:
     - name: Deployment no AKS - Azure Kubernetes Service
       uses: Azure/k8s-deploy@v1
       with:
-        namespace: ${{ secrets.NAMESPACE_K8S }}
+        namespace: codingnight2
         images: |
           renatogroffe/apicontagemk8s:latest
         manifests: |
