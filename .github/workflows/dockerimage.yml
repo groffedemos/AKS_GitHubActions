@@ -37,7 +37,7 @@ jobs:
       with:
         namespace: ${{ secrets.NAMESPACE_K8S }}
         images: |
-          ${{ secrets.DOCKER_USERNAME }}/${{ secrets.NOME_IMAGEM }}:$GITHUB_RUN_NUMBER
+          renatogroffe/apicontagemk8s:latest
         manifests: |
           manifests/deployment.yml
           manifests/service.yml
