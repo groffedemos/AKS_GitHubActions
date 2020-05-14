@@ -22,7 +22,7 @@ jobs:
     - name: Build e Push no Docker Hub
       run: |
         docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/${{ secrets.NOME_IMAGEM }}:latest
-        docker tag ${{ secrets.DOCKER_USERNAME }}/${{ secrets.NOME_IMAGEM }}:latest ${{ secrets.DOCKER_USERNAME }}/${{ secrets.NOME_IMAGEM }}:{{ event.run_id }}
+        docker tag ${{ secrets.DOCKER_USERNAME }}/${{ secrets.NOME_IMAGEM }}:latest ${{ secrets.DOCKER_USERNAME }}/${{ secrets.NOME_IMAGEM }}:{{ github.sha }}
         docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.NOME_IMAGEM }}
   
     - name: Azure Kubernetes set context - Conectando ao cluster
